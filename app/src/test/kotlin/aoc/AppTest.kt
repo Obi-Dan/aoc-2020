@@ -4,11 +4,58 @@
 package aoc
 
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 
 class AppTest {
-    @Test fun appHasAGreeting() {
-        val classUnderTest = App()
-        assertNotNull(classUnderTest.greeting, "app should have a greeting")
+    @Test fun findProductWithTestData() {
+        val app = App()
+
+        val day1Input: List<String> = listOf(
+            "1721",
+            "979",
+            "366",
+            "299",
+            "675",
+            "1456",
+        )
+
+        val result: App.Day1Ex1Result? = app.findDay1Ex1Result(day1Input, 2020)
+
+        assertNotNull(result)
+        assertEquals(514579, result.product)
+        assertEquals(2, result.resultNums.size)
+        assertTrue(result.resultNums.contains(1721), "has result number of 1721")
+        assertTrue(result.resultNums.contains(299), "has result number of 299")
+    }
+
+    @Test fun findDay1Ex1Result() {
+        val app = App()
+
+        val day1Input: List<String>? = app.getDay1Ex1Input()
+
+        val result: App.Day1Ex1Result? = app.findDay1Ex1Result(day1Input, 2020)
+
+        assertNotNull(result)
+        assertEquals(299299, result.product)
+        assertEquals(2, result.resultNums.size)
+        assertTrue(result.resultNums.contains(161), "has result number of 161")
+        assertTrue(result.resultNums.contains(1859), "has result number of 1859")
+    }
+
+    @Test fun findDay1Ex2Result() {
+        val app = App()
+
+        val day1Input: List<String>? = app.getDay1Ex1Input()
+
+        val result: App.Day1Ex1Result? = app.findDay1Ex2Result(day1Input, 2020)
+
+        assertNotNull(result)
+        assertEquals(287730716, result.product)
+        assertEquals(3, result.resultNums.size)
+        assertTrue(result.resultNums.contains(593), "has result number of 593")
+        assertTrue(result.resultNums.contains(559), "has result number of 559")
+        assertTrue(result.resultNums.contains(868), "has result number of 868")
     }
 }
